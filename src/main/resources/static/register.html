@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>register</title>
+</head>
+<body>
+  <input type = "text" id = "id"><br>
+  <input type = "password" id = "password"><br>
+  <button onclick="register()">注册</button>
+
+<script>
+    function register(){
+        let username = document.getElementById("id").value;
+        let password = document.getElementById("password").value;
+        fetch("/register",{
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({
+                username:username,
+                password:password
+            })
+        })
+        .then(response=>response.text())
+        .then(msg=>alert(msg))
+        }
+
+</script>
+</body>
+</html>
